@@ -8,17 +8,11 @@ def get_book_text(path):
     return text
 
 
-def main():
-
-  if len(sys.argv) != 2:
-    print("Usage: python main.py <path-to-book>")
-    sys.exit(1)
-  else:
-    path = sys.argv[1]
-    text = get_book_text(path)
-    words = count_words(text)
-    characters = sorted_character_count(count_characters(text))
-  print(f"============ BOOKBOT ============\nAnalyzing book found at {path}\n----------- Word Count ----------\nFound {words} total words")
+def main(book_path):
+  text = get_book_text(book_path)
+  words = count_words(text)
+  characters = sorted_character_count(count_characters(text))
+  print(f"============ BOOKBOT ============\nAnalyzing book found at {book_path}...\n----------- Word Count ----------\nFound {words} total words")
   print("--------- Character Count -------")
   for item in characters:
     print(f"{item['char']}: {item['num']}")
@@ -28,4 +22,8 @@ def main():
   
   
 
-main()
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    main(sys.argv[1])
